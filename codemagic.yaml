@@ -1,0 +1,14 @@
+workflows:
+  android-build:
+    name: Android Build
+    instance_type: linux
+    environment:
+      java: 17
+    scripts:
+      - name: Set up local.properties
+        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Build
+        script: gradle assembleDebug
+    artifacts:
+      - app/build/outputs/**/*.apk
+      - app/build/outputs/**/*.aab
